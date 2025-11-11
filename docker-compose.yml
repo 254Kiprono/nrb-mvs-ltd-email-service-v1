@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  email-service:
+    build: .
+    container_name: email-service
+    restart: always
+    ports:
+      - "9014:9014"
+    environment:
+      SMTP_HOST: "smtp.gmail.com"
+      SMTP_PORT: "587"
+      SMTP_USERNAME: "unitedzone.info@gmail.com"
+      SMTP_PASSWORD: "nyhs ezua ylsg lvtz"
+      RECEIVER_EMAIL: "unitedzone.info@gmail.com"
+    networks:
+      - e-c-deployerscript_e-commerce-network
+
+networks:
+  e-c-deployerscript_e-commerce-network:
+    external: true
