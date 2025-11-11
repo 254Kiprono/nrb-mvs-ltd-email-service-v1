@@ -85,7 +85,7 @@ func MigrateModels(db *gorm.DB) error {
 
 	// Create tables with optimized schema
 	models := []interface{}{
-		&models.ContactMessage{},
+		&models.ContactMessage{}, &models.QuoteRequest{},
 	}
 
 	err := db.Transaction(func(tx *gorm.DB) error {
