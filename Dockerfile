@@ -14,7 +14,7 @@
     COPY . .
     
     # Build static binary
-    RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o email-service .
+    RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o nrb-mvs-email-service .
     
     # -------- Stage 2: Run --------
     FROM alpine:latest
@@ -25,9 +25,9 @@
     WORKDIR /root/
     
     # Copy the built binary
-    COPY --from=builder /app/email-service .
+    COPY --from=builder /app/nrb-mvs-email-service .
     
-    EXPOSE 9014
+    EXPOSE 9015
     
-    CMD ["./email-service"]
+    CMD ["./nrb-mvs-nrb-mvs-email-service"]
     

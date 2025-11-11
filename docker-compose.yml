@@ -1,9 +1,9 @@
 version: "3.8"
 
 services:
-  email-service:
+  nrb-mvs-email-service:
     build: .
-    container_name: email-service
+    container_name: nrb-mvs-email-service
     restart: always
     ports:
       - "9014:9014"

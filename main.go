@@ -29,7 +29,7 @@ func main() {
 	routes.SetupEmailRoutes(r, db)
 
 	// Start server
-	port := "9014"
+	port := "9015"
 	log.Printf("Starting server on port %s...", port)
 	if err := r.Run(":" + port); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
