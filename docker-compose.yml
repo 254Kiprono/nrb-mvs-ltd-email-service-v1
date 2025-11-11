@@ -6,7 +6,7 @@ services:
     container_name: nrb-mvs-email-service
     restart: always
     ports:
-      - "9014:9014"
+      - "9015:9015"
     environment:
       # SMTP Variables 
       SMTP_HOST: "${SMTP_HOST}"

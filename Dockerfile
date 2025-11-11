@@ -21,6 +21,6 @@ WORKDIR /root/
 
 COPY --from=builder /app/nrb-mvs-email-service .
 
-EXPOSE 9014
+EXPOSE 9015
 
 CMD ["./nrb-mvs-email-service"]
