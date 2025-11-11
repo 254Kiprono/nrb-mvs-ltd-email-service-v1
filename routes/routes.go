@@ -1,27 +1,30 @@
 package routes
 
 import (
-	"email-service/controller" // Import the correct controller package
+	"email-service/controller"
 	"net/http"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
-func SetupEmailRoutes(router *gin.Engine) {
+func SetupEmailRoutes(router *gin.Engine, db *gorm.DB) {
 	// CORS middleware configuration
 	config := cors.Config{
-		AllowOrigins:  []string{"*"}, // Allow all origins
+		AllowOrigins:  []string{"*"},
 		AllowMethods:  []string{http.MethodGet, http.MethodHead, http.MethodPut, http.MethodPatch, http.MethodPost, http.MethodDelete},
-		AllowHeaders:  []string{"*"}, // Allow all headers
+		AllowHeaders:  []string{"*"},
 		ExposeHeaders: []string{"Content-Length"},
 	}
 
-	// Use CORS middleware
 	router.Use(cors.New(config))
 
-	// Email routes group
 	emailRoutes := router.Group("/email")
-	emailRoutes.POST("/contact", controller.SendContactEmail)   
-	emailRoutes.POST("/get-a-quote", controller.SendQuoteEmail) 
+	emailRoutes.POST("/contact", func(c *gin.Context) {
+		controller.SendContactEmail(c, db)
+	})
+	emailRoutes.POST("/get-a-quote", func(c *gin.Context) {
+		controller.SendQuoteEmail(c, db)
+	})
 }

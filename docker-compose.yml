@@ -8,11 +8,20 @@ services:
     ports:
       - "9014:9014"
     environment:
-      SMTP_HOST: "smtp.gmail.com"
-      SMTP_PORT: "587"
-      SMTP_USERNAME: "unitedzone.info@gmail.com"
-      SMTP_PASSWORD: "nyhs ezua ylsg lvtz"
-      RECEIVER_EMAIL: "unitedzone.info@gmail.com"
+      # SMTP Variables 
+      SMTP_HOST: "${SMTP_HOST}"
+      SMTP_PORT: "${SMTP_PORT}"
+      SMTP_USERNAME: "${SMTP_USERNAME}"
+      SMTP_PASSWORD: "${SMTP_PASSWORD}"
+      RECEIVER_EMAIL: "${RECEIVER_EMAIL}"
+      
+      # Database Configuration 
+      DB_HOST: "${DB_HOST}"
+      DB_PORT: "${DB_PORT}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      
     networks:
       - e-c-deployerscript_e-commerce-network
 

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"email-service/config"
+	"email-service/database"
 	"email-service/routes"
 	"log"
 
@@ -15,11 +17,21 @@ func main() {
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
-	// Set up email routes
-	routes.SetupEmailRoutes(r) 
+	cfg := config.LoadConfig()
+
+	// Initialize database
+	db, err := database.InitializeDB(cfg)
+	if err != nil {
+		log.Fatalf("Failed to connect to database: %v", err)
+	}
+
+	// Set up routes
+	routes.SetupEmailRoutes(r, db)
 
 	// Start server
-	port := "9014" // Default port
-	log.Printf("Starting server on port %s", port)
-	r.Run(":" + port)
+	port := "9014"
+	log.Printf("Starting server on port %s...", port)
+	if err := r.Run(":" + port); err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
 }
